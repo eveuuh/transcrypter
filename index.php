@@ -1,4 +1,7 @@
 <?php
+
+// definition des constantes du jeu // 
+
 $player1 = 'Pikachu';
 $player2 = 'Mewtoo';
 $player1Life = 300;
@@ -9,36 +12,74 @@ echo 'C\'est l\'heure du dueeeeeeeeel !';
 echo'/////////////////////////////////////';
 echo '';
 
-while ($player1Life > 0 || $player2Life > 0) {
-    $puissanceAttaque1 = rand($min = 0, $max =50);
-    $puissanceAttaque2 = rand($min = 0, $max=50);
+// programme defini par une boucle avec des conditions //
 
-    echo ('');
-    echo $player1. ' '.$player1Life.'-' .$player2. '' .$player2Life;
+while ($player1Life > 0 && $player2Life > 0) {
+    $puissanceAttaque1 = rand(0,50);
+    $puissanceAttaque2 = rand(0,50);
 
-   echo $player1. ' attaque et enlève ' .$puissanceAttaque1.' points de vie' ;
-   echo $player2Life = $player2Life - $puissanceAttaque1;
-   
-   echo $player2. ' attaque et enlève ' .$puissanceAttaque2.' points de vie';
-    $player1Life = $player1Life - $puissanceAttaque2;
+    // constantes pour 90% de reussites de l'attaque et 10% echouée //
+
+    $attaquereussie1 = rand(0,100);
+    $attaquereussie2 = rand(0,100);
+
+
+    echo "$player1 $player1Life $player2 $player2Life";
+
+    // bloc d'attaques   //
+
+    if ($attaquereussie1 <10 ) 
+    {
+        echo 'attaque éclair a échouée';
+
+    } else
+    {   echo $player1.'attaque et enlève' .$puissanceAttaque1.'points de vie';
+             $player2Life = $player2Life - $puissanceAttaque1;
+    }
+
+
+    if ($attaquereussie2 <10 ) 
+    {
+        echo 'son attaque a échouée';
+
+    }else 
+    { 
+        echo $player2. 'attaque et enlève' .$puissanceAttaque2. 'points de vie';
+        $player1Life = $player1Life - $puissanceAttaque2;
+    }
+
+ 
+    echo $player1. ' '.$player1Life.'-' .$player2. ' '.$player2Life;
+
+    echo $player1. ' attaque et enlève ' .$puissanceAttaque1.' points de vie' ;
+    echo $player2Life = $player2Life - $puissanceAttaque1;
     
+    echo $player2. ' attaque et enlève ' .$puissanceAttaque2.' points de vie';
+        $player1Life = $player1Life - $puissanceAttaque2;
+        
 }
 echo '/////////////////////////////////////';
-if ($player1Life < 20)
-{
-    $potion1 = rand($min = 30, $max =90);
-    $player1Life = $potion1 + $player1Life ;
-    echo $player1. ' Vous avez bu une potion et gagné'  .$potion1. 'Pv vous avez' .$player1Life.' points' ;
-    
-}
-if ($player2Life < 20)
-{
-    $potion2 = rand($min = 30, $max =90);
-    $player2Life = $potion2+ $player2Life ;
-    echo $player2. 'a bu une potion et gagné' .$potion2. 'PV vous avez' .$player2Life. 'points';
 
-}
+// ajout de potion   //
 
+    if ($player1Life < 20)
+    {
+        $potion1 = rand($min = 30, $max =90);
+        $player1Life = $potion1 + $player1Life ;
+        echo $player1. ' Vous avez bu une potion et gagné'  .$potion1. 'Pv vous avez' .$player1Life.' points' ;
+        
+    }
+    if ($player2Life < 20)
+    {
+        $potion2 = rand($min = 30, $max =90);
+        $player2Life = $potion2+ $player2Life ;
+        echo $player2. 'a bu une potion et gagné' .$potion2. 'PV vous avez' .$player2Life. 'points';
+
+    }
+
+//affiche le resultat du programme// 
+ 
+echo 'le combat est terminé!';
 
 if ($player1Life > 0 && $player2Life  <= 0) 
 {    
